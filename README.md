@@ -26,6 +26,6 @@
 *Курсив*
 
 ## Пример кода
-'''python
+```python
 print("Hello, world!")
-'''
+```

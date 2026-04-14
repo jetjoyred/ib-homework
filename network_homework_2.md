@@ -110,7 +110,7 @@ sysctl -w net.ipv4.ip_forward=1
 └─$ sudo iptables -A FORWARD -i eth1 -o eth1 -m state --state RELATED,ESTABLISHED -j ACCEPT 
 ```
 ### Команды ping и traceroute с Debian2
-![Traceroute](images/tracerout_deb2.png)
+![Traceroute](images/traceroute_deb2.png)
 ![Ping](images/ping_deb2.png)
 ### Успешное разрешение доменных имен и содержимое файла /etc/resolv.conf
 ![DNS](images/dns_ping_deb2.png)

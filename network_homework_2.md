@@ -87,3 +87,130 @@ google.com.             230     IN      A       172.217.17.206
 ;; WHEN: Sun Apr 12 15:10:06 EDT 2026
 ;; MSG SIZE  rcvd: 65
 ```
+# Задание 2
+## Настройка NAT и проверка сети
+### Схема сети
+Kali->Debian1->Debian2
+Kali - внешний интернет
+Debian1 - маршрутизатор
+Debian2 - клиент
+
+### Настройка NAT
+### Включение маршрутизация (Debian1)
+
+```
+sysctl -w net.ipv4.ip_forward=1
+┌──(jetjoyred㉿kali)-[~]
+└─$ sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+                                                                                                              
+┌──(jetjoyred㉿kali)-[~]
+└─$ sudo iptables -A FORWARD -i eth1 -o eth0 -j ACCEPT       
+                                                                                                              
+┌──(jetjoyred㉿kali)-[~]
+└─$ sudo iptables -A FORWARD -i eth1 -o eth1 -m state --state RELATED,ESTABLISHED -j ACCEPT 
+```
+### Команды ping и traceroute с Debian2
+![Traceroute](images/tracerout_deb2.png)
+![Ping](images/ping_deb2.png)
+### Успешное разрешение доменных имен и содержимое файла /etc/resolv.conf
+![DNS](images/dns_ping_deb2.png)
+![Resolv_cfg](images/resolv_conf_deb2.png)                                                                                                              
+
+# Задание 3
+## Настройка ssh доступа
+![Ssh active on deb1&deb2](images/deb1_dev2_ssh_active.png)
+### Подключение по ssh к Deb1
+
+```
+┌──(jetjoyred㉿kali)-[~]
+└─$ ssh jetjoyred@192.168.50.2                          
+jetjoyred@192.168.50.2's password: 
+Linux debian 6.12.74+deb13+1-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.12.74-2 (2026-03-08) x86_64
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Tue Apr 14 14:08:04 2026 from 192.168.50.1
+jetjoyred@debian:~$ 
+```
+![from Deb1 to Deb2](images/from_deb1_to_deb2.png)
+![Checking Hostname](checking_hostname_deb.png)
+
+# Задание 4
+### Описание
+В рамках задания был настроен доступ к Deb2 через промежуточный узел Deb1 с использованием механизма jump-host
+### Схема подключения
+Kali->Debian1->Debian2
+### Подключение через jumphost
+```
+etjoyred@debian:~$ ssh -J jetjoyred@192.168.50.2 jetjoyred@192.168.50.3
+The authenticity of host '192.168.50.2 (192.168.50.2)' can't be established.
+ED25519 key fingerprint is SHA256:D3yFjnbJKx10j/jr88xv3CQcaQ8V+6d2znXFrE+Eb1g.
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '192.168.50.2' (ED25519) to the list of known hosts.
+jetjoyred@192.168.50.2's password: 
+jetjoyred@192.168.50.3's password: 
+Linux debian 6.12.74+deb13+1-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.12.74-2 (2026-03-08) x86_64
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Tue Apr 14 15:43:50 2026 from 192.168.50.3
+jetjoyred@debian:~$ 
+
+jetjoyred@debian:~$ ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute 
+       valid_lft forever preferred_lft forever
+2: enp0s3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:74:be:8c brd ff:ff:ff:ff:ff:ff
+    altname enx08002774be8c
+    inet 192.168.50.3/24 brd 192.168.50.255 scope global enp0s3
+       valid_lft forever preferred_lft forever
+    inet6 fe80::a00:27ff:fe74:be8c/64 scope link proto kernel_ll 
+       valid_lft forever preferred_lft forever
+
+```
+
+
+# Задание 5
+### Nginx установлен на Deb2
+![Nginx status on Deb2](images/status_nginx.png)
+### Доступность с Kali
+```
+┌──(jetjoyred㉿kali)-[~]
+└─$ curl 192.168.50.3
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+```

@@ -137,7 +137,7 @@ Last login: Tue Apr 14 14:08:04 2026 from 192.168.50.1
 jetjoyred@debian:~$ 
 ```
 ![from Deb1 to Deb2](images/from_deb1_to_deb2.png)
-![Checking Hostname](checking_hostname_deb.png)
+![Checking Hostname](images/checking_hostname_deb.png)
 
 # Задание 4
 ### Описание

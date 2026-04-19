@@ -226,12 +226,12 @@ rubenkus
 [CrackStation](https://crackstation.net)
 
 ### Результат первого хэша - superpassword
-[Хэш №1](images/cs_hash1)
+[Хэш №1](images/cs_hash1.png)
 ### Результат второго хэша - qwertyui
-[Хэш №2](images/cs_hash2)
+[Хэш №2](images/cs_hash2.png)
 ### Результат третьего хэша - P@ssw0rd!
-[Хэш №3](images/cs_hash3)
+[Хэш №3](images/cs_hash3.png)
 ### Результат четвертого хэша - azekami
-[Хэш №4](images/cs_hash4)
+[Хэш №4](images/cs_hash4.png)
 ### Результат пятого хэша - hesoyam
-[Хэш №5](images/cs_hash5)
+[Хэш №5](images/cs_hash5.png)

@@ -2,11 +2,13 @@
 
 ## Command
 
-```ps -u "$(whoami)" --sort=-%cpu | head -10 | tee top10.txt```
+```bash
+ps -u "$(whoami)" --sort=-%cpu | head -10 | tee top10.txt
+```
 
 ## Output
 
-```
+```bash
 ┌──(jetjoyred㉿kali)-[~]
 └─$ ps -u "$(whoami)" --sort=-%cpu | head -10 | tee top10.txt
     PID TTY          TIME CMD

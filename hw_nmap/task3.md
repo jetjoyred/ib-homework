@@ -3,7 +3,7 @@
 
 ### Базовое сканирование 
 
-```
+```bash
 ┌──(jetjoyred㉿kali)-[~]
 └─$ nmap b24.reagroup.ru        
 Starting Nmap 7.98 ( https://nmap.org ) at 2026-04-06 12:10 -0400
@@ -19,7 +19,7 @@ Nmap done: 1 IP address (1 host up) scanned in 7.83 seconds
 ```
 
 ### Сканирование конркретных портов
-```                                                                                                                
+```bash
 ┌──(jetjoyred㉿kali)-[~]
 └─$ nmap -p 80,443,22 b24.reagroup.ru
 Starting Nmap 7.98 ( https://nmap.org ) at 2026-04-06 12:10 -0400
@@ -34,7 +34,7 @@ PORT    STATE SERVICE
 Nmap done: 1 IP address (1 host up) scanned in 2.65 seconds
 ```
 ### Сканирование диапазона портов
-```                                                                                                                   
+```bash
 ┌──(jetjoyred㉿kali)-[~]
 └─$ nmap -p 1-1000 b24.reagroup.ru   
 Starting Nmap 7.98 ( https://nmap.org ) at 2026-04-06 12:11 -0400
@@ -49,7 +49,7 @@ PORT    STATE SERVICE
 Nmap done: 1 IP address (1 host up) scanned in 34.25 seconds
 ```
 ### Определение сервисов и ОС
-```                                                                                                                   
+```bash
 ┌──(jetjoyred㉿kali)-[~]
 └─$ nmap -sV -O b24.reagroup.ru   
 Starting Nmap 7.98 ( https://nmap.org ) at 2026-04-06 12:12 -0400
@@ -71,7 +71,7 @@ OS and Service detection performed. Please report any incorrect results at https
 Nmap done: 1 IP address (1 host up) scanned in 48.37 seconds
 ```
 ### Greppable формат
-```                                                                                                                
+```bash
 ┌──(jetjoyred㉿kali)-[~]
 └─$ nmap -p 1-1000 b24.reagroup.ru -oG -
 # Nmap 7.98 scan initiated Mon Apr  6 12:24:54 2026 as: /usr/lib/nmap/nmap --privileged -p 1-1000 -oG - b24.reagroup.ru
@@ -79,4 +79,3 @@ Host: 46.149.70.209 ()  Status: Up
 Host: 46.149.70.209 ()  Ports: 22/open/tcp//ssh///, 80/open/tcp//http///, 443/open/tcp//https///        Ignored State: filtered (997)
 # Nmap done at Mon Apr  6 12:25:02 2026 -- 1 IP address (1 host up) scanned in 8.41 seconds
 ```
-

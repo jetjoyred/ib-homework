@@ -75,7 +75,7 @@ htop
 
 В файл `/etc/sudoers` была добавлена строка:
 
-```
+```text
 jetjoyred ALL=(ALL) NOPASSWD: ALL
 ```
 

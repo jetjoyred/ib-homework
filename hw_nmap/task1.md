@@ -3,14 +3,18 @@
 ## Command
 
 Корректная команда:
-```ps aux --sort=-%cpu > task1_processes.txt 2>/dev/null```
+```bash
+ps aux --sort=-%cpu > task1_processes.txt 2>/dev/null
+```
 
 Команда с ошибкой:
-```pss aux --sort=-%cpu > task1_bad.txt 2> task1_error.log```
+```bash
+pss aux --sort=-%cpu > task1_bad.txt 2> task1_error.log
+```
 
 task1_error:
 
-```
+```bash
 ┌──(jetjoyred㉿kali)-[~]
 └─$ cat task1_error.log    
 Command 'pss' not found, but there are 19 similar ones.
@@ -18,7 +22,7 @@ Command 'pss' not found, but there are 19 similar ones.
 
 task1_bad(stdout):
 
-```
+```bash
 ┌──(jetjoyred㉿kali)-[~]
 └─$ cat task1_bad.txt      
                                                                                                                    
@@ -27,7 +31,7 @@ task1_bad(stdout):
 ```
 task1_processes:
 
-```
+```bash
 ┌──(jetjoyred㉿kali)-[~]
 └─$ cat task1_processes.txt | head
 USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
@@ -41,4 +45,3 @@ root           8  0.0  0.0      0     0 ?        I<   11:24   0:00 [kworker/R-ne
 root           9  0.0  0.0      0     0 ?        I    11:24   0:00 [kworker/0:0-events]
 root          10  0.0  0.0      0     0 ?        I<   11:24   0:00 [kworker/0:0H-events_highpri]
 ```
-

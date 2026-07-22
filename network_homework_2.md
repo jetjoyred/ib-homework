@@ -4,7 +4,7 @@
 
 ### Команда используется для просмотра сетевых интерфейсов и их ip.
 ### В результате отображаются активные интерфейсы и назначенные им адреса.
-```
+```bash
 ┌──(jetjoyred㉿kali)-[~]
 └─$ ip a 
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
@@ -29,7 +29,7 @@
 ## Команда ping
 ### Команда проверяет доступность удаленного узла.
 ### Успешный ответ означает наличие сетевого соединения
-```
+```bash
 ┌──(jetjoyred㉿kali)-[~]
 └─$ ping -c 4 8.8.8.8  
 PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
@@ -45,7 +45,7 @@ rtt min/avg/max/mdev = 0.435/0.479/0.498/0.025 ms
 ## Команда traceroute 
 ### Команда показывает маршрут прохождения пакетов до узла
 ### Позволяет определить промежуточные узлы сети
-```
+```bash
 ┌──(jetjoyred㉿kali)-[~]
 └─$ traceroute 8.8.8.8
 traceroute to 8.8.8.8 (8.8.8.8), 30 hops max, 60 byte packets
@@ -56,7 +56,7 @@ traceroute to 8.8.8.8 (8.8.8.8), 30 hops max, 60 byte packets
 ```
 ## Команда SS/NETSTAT
 ### Команда показывает активные сетевые соединения и открытые порты
-```
+```bash
 ┌──(jetjoyred㉿kali)-[~]
 └─$ ss -tuln
 Netid       State       Recv-Q       Send-Q             Local Address:Port             Peer Address:Port      
@@ -64,7 +64,7 @@ Netid       State       Recv-Q       Send-Q             Local Address:Port      
 ## Команда DIG
 ### Команда используется для проверки DNS записей
 ### Показывает ip адреса домена и DNS серверы
-```
+```bash
 ┌──(jetjoyred㉿kali)-[~]
 └─$ dig google.com 
 
@@ -98,7 +98,7 @@ Debian2 - клиент
 ### Настройка NAT
 ### Включение маршрутизация (Debian1)
 
-```
+```bash
 sysctl -w net.ipv4.ip_forward=1
 ┌──(jetjoyred㉿kali)-[~]
 └─$ sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
@@ -121,7 +121,7 @@ sysctl -w net.ipv4.ip_forward=1
 ![Ssh active on deb1&deb2](images/deb1_dev2_ssh_active.png)
 ### Подключение по ssh к Deb1
 
-```
+```bash
 ┌──(jetjoyred㉿kali)-[~]
 └─$ ssh jetjoyred@192.168.50.2                          
 jetjoyred@192.168.50.2's password: 
@@ -145,7 +145,7 @@ jetjoyred@debian:~$
 ### Схема подключения
 Kali->Debian1->Debian2
 ### Подключение через jumphost
-```
+```bash
 etjoyred@debian:~$ ssh -J jetjoyred@192.168.50.2 jetjoyred@192.168.50.3
 The authenticity of host '192.168.50.2 (192.168.50.2)' can't be established.
 ED25519 key fingerprint is SHA256:D3yFjnbJKx10j/jr88xv3CQcaQ8V+6d2znXFrE+Eb1g.
@@ -187,7 +187,7 @@ jetjoyred@debian:~$ ip a
 ### Nginx установлен на Deb2
 ![Nginx status on Deb2](images/status_nginx.png)
 ### Доступность с Kali
-```
+```bash
 ┌──(jetjoyred㉿kali)-[~]
 └─$ curl 192.168.50.3
 <!DOCTYPE html>
